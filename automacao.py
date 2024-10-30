@@ -8,11 +8,12 @@ import pyscreeze
 
 userw = os.getenv('USERN')
 passw = os.getenv('PASSWORD')
+trab = os.getenv('TRABALHISTA')
 
 def Logar(p,username,password):
     #indo na pagina do site
     p.goto('https://login.controljus.com.br/login')
-    time.sleep(3)
+    time.sleep(2)
     #Logando
     p.locator('//*[@id="app"]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[1]/input').click()
     p.keyboard.type(username)
@@ -21,19 +22,19 @@ def Logar(p,username,password):
     time.sleep(1)
     p.keyboard.type(password)
     p.get_by_role('button').click()
-    time.sleep(3)
-    time.sleep(5)
+    time.sleep(2)
+    time.sleep(2)
 
 def Pesquisar(p):
     if p.locator('//*[@id="hs-eu-cookie-confirmation-inner"]'):
         p.locator('//*[@id="hs-eu-confirmation-button"]').click()
     p.goto('https://app.controljus.com.br/processos/lista')
     p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/div/div[2]/div/button/span').click()
-    time.sleep(5)
+    time.sleep(2)
 
 def Etiqueta(p):
     p.locator('//*[@id="processosFiltroEtiquetas"]/div/div/div/div[1]/div[2]/div/i').click()
-    time.sleep(3)
+    time.sleep(2)
     img = pya.locateOnScreen('img/pesquisar.png', confidence=0.7)
     pya.click(img)
     p.keyboard.type('7') #7Setembro
@@ -130,10 +131,38 @@ def Etiqueta(p):
     p.keyboard.down('Backspace')
     time.sleep(2)
 
-def Desparar(p):
+def Trabalhista(p, trabalhista):
     p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/ul/li/div/div/div[2]/div[4]/div[2]/div[3]/div/div/div[1]/div[1]/input').click()
     time.sleep(2)
     p.keyboard.type('TRABALHISTA') #Trabalhista
+    time.sleep(1)
+    img = pya.locateOnScreen('img/Trabalhista.jpeg', confidence=0.95)
+    time.sleep(1)
+    pya.click(img)
+    p.evaluate("window.scrollBy(0, window.innerHeight);")
+    p.wait_for_timeout(1000)
+    time.sleep(1)
+    #Clicar em aplicar
+    p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/ul/li/div/div/div[4]/button[2]').click()
+    print('Cliquei')
+    p.locator('//*[@id="ProcessosTable"]/div[2]/div/div/table/thead/tr[1]/th[1]/div/div/div/div/div').click()
+    time.sleep(3)
+    print('codigo')
+    time.sleep(2)
+    p.evaluate("window.scrollBy(0, -window.innerHeight);")
+    time.sleep(2)
+    img = pya.locateOnScreen('img/exportar.png', confidence=0.95)
+    time.sleep(1)
+    pya.click(img)
+    #emails
+    p.locator('//*[@id="app"]/div[1]/div/div/div[9]/div/div/div/div').click()
+    print('test')
+    time.sleep(2)
+    img = pya.locateOnScreen('img/email.jpeg', confidence=0.95)
+    time.sleep(2)
+    pya.click(img)
+    p.keyboard.type(trabalhista)
+    time.sleep(2)
 
 def rodar_automacao():
     with sync_playwright() as p:
@@ -143,7 +172,7 @@ def rodar_automacao():
         Logar(pagina, userw, passw)
         Pesquisar(pagina)
         Etiqueta(pagina)
-        Desparar(pagina)
+        Trabalhista(pagina, trab)
 
 
 janela = Tk()
