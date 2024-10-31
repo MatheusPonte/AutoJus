@@ -5,10 +5,17 @@ import pyautogui as pya
 import os
 from tkinter import *
 import pyscreeze
+from datetime import datetime
+from credjur_module import Credjuridico
+from credjur_module import EmailCred
+
 
 userw = os.getenv('USERN')
 passw = os.getenv('PASSWORD')
-trab = os.getenv('TRABALHISTA')
+trab = os.getenv('TRAB')
+cred = os.getenv('CREDJUR')
+data_atual = datetime.now().strftime("%d/%m/%Y")
+
 
 def Logar(p,username,password):
     #indo na pagina do site
@@ -131,7 +138,32 @@ def Etiqueta(p):
     p.keyboard.down('Backspace')
     time.sleep(2)
 
-def Trabalhista(p, trabalhista):
+def data(p):
+    p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/ul/li/div/div/div[2]/div[1]/div[2]/div[1]/div/div/div[1]/div[2]/div/i').click()
+    time.sleep(2)
+    img = pya.locateOnScreen('img/Movimento.jpeg', confidence=0.95)
+    time.sleep(1)
+    pya.click(img)
+    time.sleep(1)
+
+def DefinirMovimentacao(p):
+    time.sleep(2)
+    img = pya.locateOnScreen('img/exportar.png', confidence=0.95)
+    time.sleep(1)
+    pya.click(img)
+    time.sleep(2)
+    img = pya.locateOnScreen('img/movimentacao.png', confidence=0.95)
+    time.sleep(1)
+    pya.click(img)
+    time.sleep(1)
+    img = pya.locateOnScreen('img/Numero.png', confidence=0.95)
+    time.sleep(2)
+    pya.click(img)
+    time.sleep(1)
+    p.keyboard.press('Control+KeyA')
+    p.keyboard.type('2')
+
+def Trabalhista(p):
     p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/ul/li/div/div/div[2]/div[4]/div[2]/div[3]/div/div/div[1]/div[1]/input').click()
     time.sleep(2)
     p.keyboard.type('TRABALHISTA') #Trabalhista
@@ -145,15 +177,26 @@ def Trabalhista(p, trabalhista):
     #Clicar em aplicar
     p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/ul/li/div/div/div[4]/button[2]').click()
     print('Cliquei')
+    time.sleep(2)
     p.locator('//*[@id="ProcessosTable"]/div[2]/div/div/table/thead/tr[1]/th[1]/div/div/div/div/div').click()
-    time.sleep(3)
     print('codigo')
     time.sleep(2)
     p.evaluate("window.scrollBy(0, -window.innerHeight);")
-    time.sleep(2)
-    img = pya.locateOnScreen('img/exportar.png', confidence=0.95)
+
+
+def EmailTrab(p,trab):
+    #Titulo
+    time.sleep(1)
+    img = pya.locateOnScreen('img/titulo.jpeg', confidence=0.95)
     time.sleep(1)
     pya.click(img)
+    time.sleep(1)
+    img = pya.locateOnScreen('img/escrevertitulo.jpeg', confidence=0.95)
+    time.sleep(1)
+    pya.click(img)
+    time.sleep(2)
+    p.keyboard.type("PUBLICAÇÕES - TRABALHISTA -" + data_atual)
+    time.sleep(2)
     #emails
     p.locator('//*[@id="app"]/div[1]/div/div/div[9]/div/div/div/div').click()
     print('test')
@@ -161,7 +204,10 @@ def Trabalhista(p, trabalhista):
     img = pya.locateOnScreen('img/email.jpeg', confidence=0.95)
     time.sleep(2)
     pya.click(img)
-    p.keyboard.type(trabalhista)
+    time.sleep(2)
+    p.keyboard.type(trab)
+    time.sleep(2)
+    p.locator('//*[@id="app"]/div[1]/div/div/div[11]/button[2]/div').click()
     time.sleep(2)
 
 def rodar_automacao():
@@ -172,7 +218,12 @@ def rodar_automacao():
         Logar(pagina, userw, passw)
         Pesquisar(pagina)
         Etiqueta(pagina)
-        Trabalhista(pagina, trab)
+        data(pagina)
+        DefinirMovimentacao(pagina)
+        Trabalhista(pagina)
+        EmailTrab(pagina,trab)
+        Credjuridico(pagina)
+        EmailCred(pagina,cred)
 
 
 janela = Tk()
