@@ -8,12 +8,18 @@ import pyscreeze
 from datetime import datetime
 from credjur_module import Credjuridico
 from credjur_module import EmailCred
+from bancario import ContBanc
+from bancario import EmailBanco
+from civel import CivelEstrat
+from civel import EmailCivel
 
 
 userw = os.getenv('USERN')
 passw = os.getenv('PASSWORD')
 trab = os.getenv('TRAB')
 cred = os.getenv('CREDJUR')
+banc = os.getenv('BANCO')
+civeles = os.getenv('CIVEL')
 data_atual = datetime.now().strftime("%d/%m/%Y")
 
 
@@ -210,20 +216,38 @@ def EmailTrab(p,trab):
     p.locator('//*[@id="app"]/div[1]/div/div/div[11]/button[2]/div').click()
     time.sleep(2)
 
+def exportar(p):
+    time.sleep(2)
+    img = pya.locateOnScreen('img/exportar.png', confidence=0.95)
+    time.sleep(1)
+    pya.click(img)
+    time.sleep(2)
+    img = pya.locateOnScreen('img/movimentacao.png', confidence=0.95)
+    time.sleep(1)
+    pya.click(img)
+    time.sleep(1)
+
 def rodar_automacao():
     with sync_playwright() as p:
         navegador = p.chromium.launch(headless=False)
-        context = navegador.new_context(viewport={"width": 1920, "height": 1080})
+        context = navegador.new_context(no_viewport=True)
         pagina = navegador.new_page()
         Logar(pagina, userw, passw)
         Pesquisar(pagina)
         Etiqueta(pagina)
         data(pagina)
-        DefinirMovimentacao(pagina)
         Trabalhista(pagina)
+        DefinirMovimentacao(pagina)
         EmailTrab(pagina,trab)
         Credjuridico(pagina)
+        exportar(pagina)
         EmailCred(pagina,cred)
+        ContBanc(pagina)
+        exportar(pagina)
+        EmailBanco(pagina,banc)
+        CivelEstrat(pagina)
+        exportar(pagina)
+        EmailCivel(pagina,civeles)
 
 
 janela = Tk()
