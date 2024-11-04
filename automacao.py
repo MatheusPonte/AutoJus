@@ -47,6 +47,8 @@ def Pesquisar(p):
 
 def Etiqueta(p):
     p.locator('//*[@id="processosFiltroEtiquetas"]/div/div/div/div[1]/div[2]/div/i').click()
+    time.sleep(1)
+    p.locator('//*[@id="app"]/div[19]/div/div/div[2]/a/div[1]/div/div/div[1]/div/div').click()
     time.sleep(2)
     img = pya.locateOnScreen('img/pesquisar.png', confidence=0.7)
     pya.click(img)
@@ -248,6 +250,7 @@ def rodar_automacao():
         CivelEstrat(pagina)
         exportar(pagina)
         EmailCivel(pagina,civeles)
+        time.sleep(3)
 
 
 janela = Tk()

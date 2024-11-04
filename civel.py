@@ -15,9 +15,9 @@ def CivelEstrat(p):
     p.keyboard.press("Backspace")
     p.keyboard.press("Backspace")
     p.keyboard.type('Estra') #estrategico
+    time.sleep(3)
+    img = pya.locateOnScreen('img/CIVEL.jpeg', confidence=0.95)
     time.sleep(2)
-    img = pya.locateOnScreen('img/EstratCivel.jpeg', confidence=0.95)
-    time.sleep(1)
     pya.click(img)
     p.evaluate("window.scrollBy(0, window.innerHeight);")
     p.wait_for_timeout(1000)
