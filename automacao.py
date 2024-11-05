@@ -12,6 +12,7 @@ from bancario import ContBanc
 from bancario import EmailBanco
 from civel import CivelEstrat
 from civel import EmailCivel
+from imgfunction import searchimage
 
 
 userw = os.getenv('USERN')
@@ -21,6 +22,7 @@ cred = os.getenv('CREDJUR')
 banc = os.getenv('BANCO')
 civeles = os.getenv('CIVEL')
 data_atual = datetime.now().strftime("%d/%m/%Y")
+
 
 
 def Logar(p,username,password):
@@ -48,68 +50,42 @@ def Pesquisar(p):
 def Etiqueta(p):
     p.locator('//*[@id="processosFiltroEtiquetas"]/div/div/div/div[1]/div[2]/div/i').click()
     time.sleep(1)
-    p.locator('//*[@id="app"]/div[19]/div/div/div[2]/a/div[1]/div/div/div[1]/div/div').click()
-    time.sleep(2)
-    img = pya.locateOnScreen('img/pesquisar.png', confidence=0.7)
-    pya.click(img)
-    p.keyboard.type('7') #7Setembro
+    searchimage('img/naopreenchido.png',"pesquisar clicado!")
+    searchimage('img/pesquisar.png',"pesquisar clicado!")
+    # p.keyboard.type('7') #7Setembro
     print('passei')
-    time.sleep(2)
-    img = pya.locateOnScreen('img/7Setembro.jpeg', confidence=0.9)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
-    p.keyboard.press('Backspace')
-    p.keyboard.type('ALL') #Alldesk
-    time.sleep(2)
-    img = pya.locateOnScreen('img/AllDesk.jpeg', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
-    p.keyboard.press('Control+KeyA')
-    p.keyboard.down('Backspace')
-    p.keyboard.type('CAP') #Capitalize
-    time.sleep(2)
-    img = pya.locateOnScreen('img/capitalize.jpeg', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
-    p.keyboard.press('Control+KeyA')
-    p.keyboard.down('Backspace')
-    p.keyboard.type('FAC') #FAC
-    time.sleep(2)
-    img = pya.locateOnScreen('img/Fac.jpeg', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
+    time.sleep(1)
+    searchimage('img/7Setembro.jpeg',"7Setembro clicado!")
+    # p.keyboard.press('Backspace')
+    # p.keyboard.type('ALL') #Alldesk
+    # time.sleep(1)
+    searchimage('img/AllDesk.jpeg',"AllDesk clicado!")
+    # p.keyboard.press('Control+KeyA')
+    # p.keyboard.down('Backspace')
+    # p.keyboard.type('CAP') #Capitalize
+    # time.sleep(1)
+    searchimage('img/capitalize.jpeg',"capitalize clicado!")
+    # p.keyboard.press('Control+KeyA')
+    # p.keyboard.down('Backspace')
+    # p.keyboard.type('FAC') #FAC
+    # time.sleep(1)
+    searchimage('img/Fac.jpeg',"Fac clicado!")
     p.keyboard.press('Control+KeyA')
     p.keyboard.down('Backspace')
     p.keyboard.type('G') #grupo
-    time.sleep(2)
-    img = pya.locateOnScreen('img/Grupo.jpeg', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
+    time.sleep(1)
+    searchimage('img/Grupo.jpeg',"Fac clicado!")
     p.keyboard.press('Control+KeyA')
     p.keyboard.down('Backspace')
     p.keyboard.type('KE') #Kedu
-    time.sleep(2)
-    img = pya.locateOnScreen('img/Kedu.jpeg', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
+    time.sleep(1)
+    searchimage('img/Kedu.jpeg',"Kedu clicado!")
     p.keyboard.press('Control+KeyA')
     p.keyboard.down('Backspace')
     p.keyboard.type('M') #Martins and MF
-    time.sleep(2)
-    img = pya.locateOnScreen('img/Martins.jpeg', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
-    img = pya.locateOnScreen('img/MF.jpeg', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
+    time.sleep(1)
+    searchimage('img/Martins.jpeg',"Martins clicado!")
+    searchimage('img/MF.jpeg',"MF clicado!")
     p.keyboard.press('Control+KeyA')
     p.keyboard.down('Backspace')
     p.keyboard.type('OR') #Orla
