@@ -93,15 +93,11 @@ def Etiqueta(p):
     searchimage('img/TST.jpeg',"TST clicado!")
     p.keyboard.press('Control+KeyA')
     p.keyboard.down('Backspace')
-    time.sleep(1)
 
 def data(p):
     p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/ul/li/div/div/div[2]/div[1]/div[2]/div[1]/div/div/div[1]/div[2]/div/i').click()
-    time.sleep(2)
-    img = pya.locateOnScreen('img/Movimento.jpeg', confidence=0.95)
     time.sleep(1)
-    pya.click(img)
-    time.sleep(1)
+    searchimage('img/Movimento.jpeg',"Movimento clicado!")
 
 def DefinirMovimentacao(p):
     time.sleep(2)
@@ -124,10 +120,7 @@ def Trabalhista(p):
     p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/ul/li/div/div/div[2]/div[4]/div[2]/div[3]/div/div/div[1]/div[1]/input').click()
     time.sleep(2)
     p.keyboard.type('TRABALHISTA') #Trabalhista
-    time.sleep(1)
-    img = pya.locateOnScreen('img/Trabalhista.jpeg', confidence=0.95)
-    time.sleep(1)
-    pya.click(img)
+    searchimage('img/Trabalhista.jpeg',"Trabalhista clicado!")
     p.evaluate("window.scrollBy(0, window.innerHeight);")
     p.wait_for_timeout(1000)
     time.sleep(1)
@@ -144,38 +137,23 @@ def Trabalhista(p):
 def EmailTrab(p,trab):
     #Titulo
     time.sleep(1)
-    img = pya.locateOnScreen('img/titulo.jpeg', confidence=0.95)
-    time.sleep(1)
-    pya.click(img)
-    time.sleep(1)
-    img = pya.locateOnScreen('img/escrevertitulo.jpeg', confidence=0.95)
-    time.sleep(1)
-    pya.click(img)
-    time.sleep(2)
+    searchimage('img/titulo.jpeg',"titulo clicado!")
+    searchimage('img/escrevertitulo.jpeg',"escrevertitulo clicado!")
     p.keyboard.type("PUBLICAÇÕES - TRABALHISTA -" + data_atual)
-    time.sleep(2)
+    time.sleep(1)
     #emails
     p.locator('//*[@id="app"]/div[1]/div/div/div[9]/div/div/div/div').click()
     print('test')
     time.sleep(2)
-    img = pya.locateOnScreen('img/email.jpeg', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(2)
+    searchimage('img/email.jpeg',"email clicado!")
     p.keyboard.type(trab)
-    time.sleep(2)
+    time.sleep(1)
     p.locator('//*[@id="app"]/div[1]/div/div/div[11]/button[2]/div').click()
-    time.sleep(2)
 
 def exportar(p):
-    time.sleep(2)
-    img = pya.locateOnScreen('img/exportar.png', confidence=0.95)
     time.sleep(1)
-    pya.click(img)
-    time.sleep(2)
-    img = pya.locateOnScreen('img/movimentacao.png', confidence=0.95)
-    time.sleep(1)
-    pya.click(img)
+    searchimage('img/exportar.jpeg',"exportar clicado!")
+    searchimage('img/movimentacao.jpeg',"movimentacao clicado!")
     time.sleep(1)
 
 def rodar_automacao():
