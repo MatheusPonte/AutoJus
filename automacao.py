@@ -101,18 +101,9 @@ def data(p):
 
 def DefinirMovimentacao(p):
     time.sleep(2)
-    img = pya.locateOnScreen('img/exportar.png', confidence=0.95)
-    time.sleep(1)
-    pya.click(img)
-    time.sleep(2)
-    img = pya.locateOnScreen('img/movimentacao.png', confidence=0.95)
-    time.sleep(1)
-    pya.click(img)
-    time.sleep(1)
-    img = pya.locateOnScreen('img/Numero.png', confidence=0.95)
-    time.sleep(2)
-    pya.click(img)
-    time.sleep(1)
+    searchimage('img/exportar.jpeg',"exportar clicado!")
+    searchimage('img/movimentacao.jpeg',"movimentacao clicado!")
+    searchimage('img/Numero.jpeg',"Numero clicado!")
     p.keyboard.press('Control+KeyA')
     p.keyboard.type('2')
 
