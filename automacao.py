@@ -101,10 +101,13 @@ def data(p):
 
 def DefinirMovimentacao(p):
     time.sleep(2)
-    searchimage('img/exportar.jpeg',"exportar clicado!")
-    searchimage('img/movimentacao.jpeg',"movimentacao clicado!")
-    searchimage('img/Numero.jpeg',"Numero clicado!")
+    searchimage('img/exportar.png',"exportar clicado!")
+    searchimage('img/movimentacao.png',"movimentacao clicado!")
+    time.sleep(1)
+    searchimage('img/Numero.png',"Numero clicado!")
+    time.sleep(1)
     p.keyboard.press('Control+KeyA')
+    time.sleep(1)
     p.keyboard.type('2')
 
 def Trabalhista(p):
@@ -143,8 +146,8 @@ def EmailTrab(p,trab):
 
 def exportar(p):
     time.sleep(1)
-    searchimage('img/exportar.jpeg',"exportar clicado!")
-    searchimage('img/movimentacao.jpeg',"movimentacao clicado!")
+    searchimage('img/exportar.png',"exportar clicado!")
+    searchimage('img/movimentacao.png',"movimentacao clicado!")
     time.sleep(1)
 
 def rodar_automacao():
