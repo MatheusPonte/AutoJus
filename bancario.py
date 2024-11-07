@@ -7,6 +7,8 @@ from tkinter import *
 import pyscreeze
 from automacao import *
 from datetime import datetime
+from imgfunction import searchimage
+
 data_atual = datetime.now().strftime("%d/%m/%Y")
 
 def ContBanc(p):
@@ -33,6 +35,7 @@ def EmailBanco(p,banc):
     time.sleep(0.5)
     searchimage('img/titulo.jpeg',"titulo clicado!")
     searchimage('img/escrevertitulo.jpeg',"escrevertitulo clicado!")
+    time.sleep(2)
     p.keyboard.type("PUBLICAÇÕES - CONTENCIOSO BANCÁRIO - " + data_atual)
     #emails
     searchimage('img/fotoemail.jpeg',"fotoemail clicado!")

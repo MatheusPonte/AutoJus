@@ -7,9 +7,12 @@ from tkinter import *
 import pyscreeze
 from automacao import *
 from datetime import datetime
+from imgfunction import searchimage
+
 data_atual = datetime.now().strftime("%d/%m/%Y")
 
 def CivelEstrat(p):
+    time.sleep(2)
     p.locator('//*[@id="content"]/div/div[3]/div/div/div[2]/div/div[1]/div/ul/li/div/div/div[2]/div[4]/div[2]/div[3]/div/div/div[1]/div[1]/input').click()
     time.sleep(1)
     p.keyboard.press("Backspace")
@@ -33,7 +36,9 @@ def EmailCivel(p,civel):
     #Titulo
     time.sleep(1)
     searchimage('img/titulo.jpeg',"titulo clicado!")
+    time.sleep(1)
     searchimage('img/escrevertitulo.jpeg',"escrevertitulo clicado!")
+    time.sleep(2)
     p.keyboard.type("PUBLICAÇÕES - CÍVEL ESTRATÉGICO - " + data_atual)
     #emails
     searchimage('img/fotoemail.jpeg',"fotoemail clicado!")
